@@ -1,0 +1,28 @@
+# github.com/fatih/color v1.9.0
+## explicit
+# github.com/golang/protobuf v1.4.3
+## explicit
+# github.com/gorilla/mux v1.8.0
+## explicit
+github.com/gorilla/mux
+# github.com/hashicorp/go-hclog v0.14.1
+## explicit
+# github.com/mattn/go-colorable v0.1.8
+## explicit
+# github.com/nicholasjackson/building-microservices-youtube/currency v0.0.0-20200918064506-0260dd0e3676
+## explicit
+# github.com/nicholasjackson/building-microservices-youtube/product-api v0.0.0-20200918064506-0260dd0e3676
+## explicit
+# github.com/nicholasjackson/env v0.6.0
+## explicit
+github.com/nicholasjackson/env
+# golang.org/x/net v0.0.0-20201016165138-7b1cca2348c0
+## explicit
+# golang.org/x/sys v0.0.0-20201017003518-b09fb700fbb7
+## explicit
+# google.golang.org/genproto v0.0.0-20201015140912-32ed001d685c
+## explicit
+# google.golang.org/grpc v1.33.0
+## explicit
+# google.golang.org/protobuf v1.25.0
+## explicit

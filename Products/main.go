@@ -10,7 +10,6 @@ import (
 
 	handlers "Products/src/handlers"
 
-	"github.com/gorilla/mux"
 	"github.com/nicholasjackson/env"
 )
 
@@ -21,24 +20,10 @@ func main() {
 
 	l := log.New(os.Stdout, "products-api ", log.LstdFlags)
 
-	// create the handlers
+	// create your own product handler and register that handlers to the ServeMux() handler which is the default one provided by golang. later you will replace it be Mux Router
 	ph := handlers.NewProducts(l)
-
-	// create a new serve mux and register the handlers
-	sm := mux.NewRouter()
-
-	getRouter := sm.Methods(http.MethodGet).Subrouter()
-	getRouter.HandleFunc("/", ph.GetProducts)
-
-	putRouter := sm.Methods(http.MethodPut).Subrouter()
-	putRouter.HandleFunc("/{id:[0-9]+}", ph.UpdateProducts)
-	putRouter.Use(ph.MiddlewareValidateProduct)
-
-	postRouter := sm.Methods(http.MethodPost).Subrouter()
-	postRouter.HandleFunc("/", ph.AddProduct)
-	postRouter.Use(ph.MiddlewareValidateProduct)
-
-	//sm.Handle("/products", ph)
+	sm := http.NewServeMux()
+	sm.Handle("/", ph)
 
 	// create a new server
 	s := http.Server{
@@ -54,7 +39,8 @@ func main() {
 	go func() {
 		l.Println("Starting server on port 9090")
 
-		err := s.ListenAndServe()
+		//err := http.ListenAndServe(*httpAddr, sm)
+		err := s.ListenAndServe() // This way you can define a timeout also ...
 		if err != nil {
 			l.Printf("Error starting server: %s\n", err)
 			os.Exit(1)

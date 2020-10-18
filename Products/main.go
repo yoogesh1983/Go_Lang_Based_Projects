@@ -1,6 +1,7 @@
 package main
 
 import (
+	handlers "Products/src/handlers"
 	"context"
 	"log"
 	"net/http"
@@ -8,26 +9,40 @@ import (
 	"os/signal"
 	"time"
 
-	handlers "Products/src/handlers"
-
+	"github.com/gorilla/mux"
 	"github.com/nicholasjackson/env"
 )
 
+var bindAddress = env.String("BIND_ADDRESS", false, ":8080", "Bind address for the server")
+
 func main() {
 
-	httpAddr := env.String("BIND_ADDRESS", false, ":9090", "Bind address for the server")
 	env.Parse()
 
 	l := log.New(os.Stdout, "products-api ", log.LstdFlags)
 
-	// create your own product handler and register that handlers to the ServeMux() handler which is the default one provided by golang. later you will replace it be Mux Router
+	// create the handlers
 	ph := handlers.NewProducts(l)
-	sm := http.NewServeMux()
-	sm.Handle("/", ph)
+
+	// create a new serve mux and register the handlers
+	sm := mux.NewRouter()
+
+	getRouter := sm.Methods(http.MethodGet).Subrouter()
+	getRouter.HandleFunc("/", ph.GetProducts)
+
+	putRouter := sm.Methods(http.MethodPut).Subrouter()
+	putRouter.HandleFunc("/{id:[0-9]+}", ph.UpdateProducts)
+	putRouter.Use(ph.MiddlewareValidateProduct)
+
+	postRouter := sm.Methods(http.MethodPost).Subrouter()
+	postRouter.HandleFunc("/", ph.AddProduct)
+	postRouter.Use(ph.MiddlewareValidateProduct)
+
+	//sm.Handle("/products", ph)
 
 	// create a new server
 	s := http.Server{
-		Addr:         *httpAddr,         // configure the bind address
+		Addr:         *bindAddress,      // configure the bind address
 		Handler:      sm,                // set the default handler
 		ErrorLog:     l,                 // set the logger for the server
 		ReadTimeout:  5 * time.Second,   // max time to read request from the client
@@ -37,10 +52,9 @@ func main() {
 
 	// start the server
 	go func() {
-		l.Println("Starting server on port 9090")
+		l.Println("Starting server on port 8080")
 
-		//err := http.ListenAndServe(*httpAddr, sm)
-		err := s.ListenAndServe() // This way you can define a timeout also ...
+		err := s.ListenAndServe()
 		if err != nil {
 			l.Printf("Error starting server: %s\n", err)
 			os.Exit(1)

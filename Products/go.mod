@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/fatih/color v1.9.0 // indirect
+	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/gorilla/mux v1.8.0
 	github.com/hashicorp/go-hclog v0.14.1 // indirect

@@ -52,6 +52,7 @@ func main() {
 	postRouter.HandleFunc("/images/{id:[0-9]+}/{filename:[a-zA-Z]+\\.[a-z]{3}}", fh.ServeHTTP)
 
 	// get files
+	//http.FileServer is given by go which automatically detects the content type and do all kinds of thing and automatically wraps the response string for you. so that we don't need a hanlder here like above
 	getRouter := sm.Methods(http.MethodGet).Subrouter()
 	getRouter.Handle(
 		"/images/{id:[0-9]+}/{filename:[a-zA-Z]+\\.[a-z]{3}}",

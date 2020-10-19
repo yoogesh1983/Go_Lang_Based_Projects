@@ -1,7 +1,6 @@
 package files
 
 import (
-	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -35,7 +34,6 @@ func (l *Local) Save(path string, contents io.Reader) error {
 	fp := l.fullPath(path)
 
 	// get the directory and make sure it exists
-	fmt.Println("=====", fp)
 	d := filepath.Dir(fp)
 	err := os.MkdirAll(d, os.ModePerm)
 	if err != nil {

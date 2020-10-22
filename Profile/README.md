@@ -6,11 +6,11 @@
 - Copy all the file from the "include" folder inside the "third_party" folder which is in our profile folder </br>
 - From the terminal, execute below command: </br>
 
-> go get -u google.golang.org/grpc </br>
-> go get -u github.com/golang/protobuf/protoc-gen-go </br>
+    > go get -u google.golang.org/grpc </br>
+    > go get -u github.com/golang/protobuf/protoc-gen-go </br>
 
-- GO inside "go/bin" folder (in the case of window C:\Users\yooge\go\bin) and copy "proto-gen-go" file inside our profile folder here </br>
+- Go inside the "go/bin" folder (in the case of window C:\Users\yooge\go\bin) and copy "proto-gen-go" file inside our profile folder here </br>
 - Now, run below command to generate a proto file: </br>
-> protoc --proto_path=proto --proto_path=Mpath/third_party --go_out=plugins=grpc:proto service.proto
+    > protoc --proto_path=proto --proto_path=Mpath/third_party --go_out=plugins=grpc:proto service.proto
 
 

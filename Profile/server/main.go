@@ -1,37 +1,40 @@
 package main
 
 import (
-	dao "Profile/server/Database"
-	"log"
+	"Profile/proto"
+	"context"
 	"net"
-	"net/http"
-	"net/rpc"
+
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
+
+type server struct{}
+
+func (s *server) Add(ctx context.Context, request *proto.Request) (*proto.Response, error) {
+	a, b := request.GetA(), request.GetB()
+	result := a + b
+	return &proto.Response{Result: result}, nil
+}
+
+func (s *server) Multiply(ctx context.Context, request *proto.Request) (*proto.Response, error) {
+	a, b := request.GetA(), request.GetB()
+	result := a * b
+	return &proto.Response{Result: result}, nil
+}
 
 func main() {
 
-	//Start server
-	initServer()
-}
-
-func initServer() {
-	var api = new(dao.API)
-	err := rpc.Register(api)
-
+	listener, err := net.Listen("tcp", ":4040")
 	if err != nil {
-		log.Fatal("error registering API", err)
+		panic(err)
+	}
+	srv := grpc.NewServer()
+	proto.RegisterAddServiceServer(srv, &server{})
+	reflection.Register(srv)
+
+	if e := srv.Serve(listener); e != nil {
+		panic(err)
 	}
 
-	rpc.HandleHTTP()
-
-	listener, Err := net.Listen("tcp", ":4040")
-
-	if Err != nil {
-		log.Fatal("Listener Error", Err)
-	}
-	log.Printf("Serving RPC on port %d", 4040)
-	err = http.Serve(listener, nil)
-	if err != nil {
-		log.Fatal("Error serving", err)
-	}
 }

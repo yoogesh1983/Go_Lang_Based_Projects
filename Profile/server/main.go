@@ -2,26 +2,13 @@ package main
 
 import (
 	"Profile/proto"
-	"context"
+	"Profile/server/service"
+	"fmt"
 	"net"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
-
-type server struct{}
-
-func (s *server) Add(ctx context.Context, request *proto.Request) (*proto.Response, error) {
-	a, b := request.GetA(), request.GetB()
-	result := a + b
-	return &proto.Response{Result: result}, nil
-}
-
-func (s *server) Multiply(ctx context.Context, request *proto.Request) (*proto.Response, error) {
-	a, b := request.GetA(), request.GetB()
-	result := a * b
-	return &proto.Response{Result: result}, nil
-}
 
 func main() {
 
@@ -30,8 +17,10 @@ func main() {
 		panic(err)
 	}
 	srv := grpc.NewServer()
-	proto.RegisterAddServiceServer(srv, &server{})
+	proto.RegisterAddServiceServer(srv, &service.Server{})
 	reflection.Register(srv)
+
+	fmt.Println("Server running on port 4040")
 
 	if e := srv.Serve(listener); e != nil {
 		panic(err)

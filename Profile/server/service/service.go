@@ -75,8 +75,4 @@ func (s *server) SubscribeSignIn(source proto.AccountService_SubscribeSignInServ
 func (s *server) handleUpdates() {
 	s.token.MonitorJWTStatus(30 * time.Second)
 	s.log.Info("Got Updated rates")
-
-	for k, v := range s.subscriptions {
-		r, err := s.token.GetToken()
-	}
 }

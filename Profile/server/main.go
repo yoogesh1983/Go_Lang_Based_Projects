@@ -2,6 +2,7 @@ package main
 
 import (
 	"Profile/proto"
+	"Profile/server/data"
 	"Profile/server/service"
 	"fmt"
 	"net"
@@ -20,10 +21,17 @@ func main() {
 
 	// create an instance of the Service
 	log := hclog.Default()
-	srv := service.NewService(log)
+
+	jwtToken, err := data.NewToken(log)
+	if err != nil {
+		log.Error("Unable to generate tokens", "error", err)
+		os.Exit(1)
+	}
+
+	srv := service.NewService(log, jwtToken)
 
 	// Register the service and server
-	proto.RegisterAddServiceServer(s, srv)
+	proto.RegisterAccountServiceServer(s, srv)
 
 	// You might want to disable into a production environment though!!
 	reflection.Register(s)

@@ -2,16 +2,23 @@ syntax = "proto3";
 
 package proto;
 
-message Request {
-    int64 a = 1;
-    int64 b = 2;
+service AccountService {
+    rpc SignIn(SignInRequest) returns (SignInResponse);
+    rpc SubscribeSignIn(stream SignInRequest) returns (stream SignInResponse);
 }
 
-message Response {
-    int64 result = 1;
+message SignInRequest {
+    string username = 1;
+    string password = 2;
 }
 
-service AddService {
-    rpc Add(Request) returns (Response);
-    rpc Multiply(Request) returns (Response);
+message SignInResponse {
+    string transactionID = 1;
+    Data data = 2;
 }
+
+message Data {
+    string jwtToken = 1;
+    int64 guid = 2;
+}
+

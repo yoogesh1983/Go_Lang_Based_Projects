@@ -4,6 +4,8 @@ go 1.15
 
 require (
 	github.com/gin-gonic/gin v1.6.3
+	github.com/go-playground/locales v0.13.0
+	github.com/go-playground/validator/v10 v10.2.0
 	github.com/golang/protobuf v1.4.3
 	github.com/hashicorp/go-hclog v0.14.1
 	golang.org/x/net v0.0.0-20201021035429-f5854403a974 // indirect

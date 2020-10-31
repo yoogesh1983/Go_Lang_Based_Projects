@@ -11,6 +11,6 @@
 
 - Go inside the "go/bin" folder (in the case of window C:\Users\yooge\go\bin) and copy "proto-gen-go" file inside our profile folder here
 - Now, run below command to generate a proto file: </br>
-    > protoc --proto_path=proto --proto_path=Mpath/third_party --go_out=plugins=grpc:proto service.proto
+    > protoc --proto_path=proto --proto_path=third_party --go_out=plugins=grpc:proto service.proto
 
 

@@ -16,6 +16,7 @@ func NewService(l hclog.Logger) *server {
 	return s
 }
 
+//@Override
 func (s *server) SignIn(ctx context.Context, request *proto.SignInRequest) (*proto.SignInResponse, error) {
 	s.log.Info("Handle request for SignIn", "Username", request.GetUsername(), "Password", request.GetPassword())
 

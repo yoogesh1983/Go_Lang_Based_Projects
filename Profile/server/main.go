@@ -24,7 +24,7 @@ func main() {
 	srv := service.NewService(grpcLog, connections)
 
 	// Register the service and server
-	proto.RegisterBroadcastServer(s, srv)
+	proto.RegisterChatServiceServer(s, srv)
 
 	// You might want to disable into a production environment though!!
 	reflection.Register(s)

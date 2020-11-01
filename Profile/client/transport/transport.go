@@ -16,12 +16,12 @@ import (
 	"google.golang.org/grpc"
 )
 
-func GetClient() proto.BroadcastClient {
+func GetClient() proto.ChatServiceClient {
 	conn, err := grpc.Dial("localhost:4040", grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}
-	client := proto.NewBroadcastClient(conn)
+	client := proto.NewChatServiceClient(conn)
 	return client
 }
 
@@ -38,7 +38,7 @@ func GetUser() *proto.User {
 	return &user
 }
 
-func CreateConnection(client proto.BroadcastClient, user *proto.User, wg *sync.WaitGroup) error {
+func CreateConnection(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
 	var streamerror error
 
 	stream, err := client.CreateStream(context.Background(), &proto.Connect{
@@ -51,7 +51,7 @@ func CreateConnection(client proto.BroadcastClient, user *proto.User, wg *sync.W
 	}
 
 	wg.Add(1)
-	go func(str proto.Broadcast_CreateStreamClient) {
+	go func(str proto.ChatService_CreateStreamClient) {
 		defer wg.Done()
 
 		for {
@@ -67,7 +67,7 @@ func CreateConnection(client proto.BroadcastClient, user *proto.User, wg *sync.W
 	return streamerror
 }
 
-func SendMessage(client proto.BroadcastClient, user *proto.User, wg *sync.WaitGroup) error {
+func SendMessage(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
 	var broadCastError error
 
 	wg.Add(1)

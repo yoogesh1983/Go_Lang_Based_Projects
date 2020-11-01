@@ -2,6 +2,11 @@ syntax = "proto3";
 
 package proto;
 
+service ChatService {
+    rpc CreateStream(Connect) returns (stream Message);
+    rpc BroadcastMessage(Message) returns (Close);
+}
+
 message User {
     string id = 1;
     string name = 2;
@@ -20,9 +25,4 @@ message Connect {
 
 message Close {
     
-}
-
-service Broadcast {
-    rpc CreateStream(Connect) returns (stream Message);
-    rpc BroadcastMessage(Message) returns (Close);
 }

@@ -19,4 +19,15 @@
 
     > go run main.go -N yoogesh
 
+- You can create as many as client you want.
+ - Now you can enter whatever the message you want from the console and when done click enter. upon doing that, it will return you a hashed value of id along with the message you sent. Now if you go to other client console, you can see the same message is broadcast there:
+ 
+    > yooge@DESKTOP-B96F47M MINGW64 ~/Documents/GitHub/Go_Lang_Based_Projects/Profile/client (08-Grpc_part2_chatApplication)
+    > $ go run main.go -N yoogesh
+    > Good morning!!!
+    > 1b05a7327525fd65e87df3494f608bf3f7dea2ac2c6d7266d6c4f6115069638f : Good morning!!
+
+
+
+
 

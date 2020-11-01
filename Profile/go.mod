@@ -11,6 +11,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/ugorji/go v1.1.13 // indirect
+	go.etcd.io/etcd v3.3.25+incompatible // indirect
 	golang.org/x/crypto v0.0.0-20201016220609-9e8e0b390897 // indirect
 	golang.org/x/net v0.0.0-20201029032533-e0495509cf55
 	golang.org/x/sys v0.0.0-20201029020603-3518587229cd // indirect

@@ -13,6 +13,11 @@ type server struct {
 	threadPool []*NewConnection
 }
 
+func NewService(l glog.LoggerV2, c []*NewConnection) *server {
+	s := &server{l, c}
+	return s
+}
+
 type NewConnection struct {
 	stream proto.ChatService_StartChatServer
 	id     string
@@ -20,11 +25,7 @@ type NewConnection struct {
 	error  chan error
 }
 
-func NewService(l glog.LoggerV2, c []*NewConnection) *server {
-	s := &server{l, c}
-	return s
-}
-
+//@Override
 func (s *server) StartChat(pconn *proto.Connection, stream proto.ChatService_StartChatServer) error {
 	conn := &NewConnection{
 		stream: stream,
@@ -36,6 +37,7 @@ func (s *server) StartChat(pconn *proto.Connection, stream proto.ChatService_Sta
 	return <-conn.error
 }
 
+//@Override
 func (s *server) SendMessageToAll(ctx context.Context, msg *proto.Notification) (*proto.Close, error) {
 	wg := sync.WaitGroup{}
 	ch := make(chan int)

@@ -29,6 +29,124 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+type Connection struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User   *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Active bool  `protobuf:"varint,2,opt,name=active,proto3" json:"active,omitempty"`
+}
+
+func (x *Connection) Reset() {
+	*x = Connection{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Connection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Connection) ProtoMessage() {}
+
+func (x *Connection) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Connection.ProtoReflect.Descriptor instead.
+func (*Connection) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Connection) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+func (x *Connection) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+type Notification struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Content   string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	Timestamp string `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+}
+
+func (x *Notification) Reset() {
+	*x = Notification{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Notification) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Notification) ProtoMessage() {}
+
+func (x *Notification) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Notification.ProtoReflect.Descriptor instead.
+func (*Notification) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Notification) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Notification) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *Notification) GetTimestamp() string {
+	if x != nil {
+		return x.Timestamp
+	}
+	return ""
+}
+
 type User struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -41,7 +159,7 @@ type User struct {
 func (x *User) Reset() {
 	*x = User{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[0]
+		mi := &file_service_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -54,7 +172,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[0]
+	mi := &file_service_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -67,7 +185,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{0}
+	return file_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *User) GetId() string {
@@ -82,124 +200,6 @@ func (x *User) GetName() string {
 		return x.Name
 	}
 	return ""
-}
-
-type Message struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Content   string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
-	Timestamp string `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-}
-
-func (x *Message) Reset() {
-	*x = Message{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Message) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Message) ProtoMessage() {}
-
-func (x *Message) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Message.ProtoReflect.Descriptor instead.
-func (*Message) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Message) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Message) GetContent() string {
-	if x != nil {
-		return x.Content
-	}
-	return ""
-}
-
-func (x *Message) GetTimestamp() string {
-	if x != nil {
-		return x.Timestamp
-	}
-	return ""
-}
-
-type Connect struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	User   *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	Active bool  `protobuf:"varint,2,opt,name=active,proto3" json:"active,omitempty"`
-}
-
-func (x *Connect) Reset() {
-	*x = Connect{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Connect) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Connect) ProtoMessage() {}
-
-func (x *Connect) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Connect.ProtoReflect.Descriptor instead.
-func (*Connect) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *Connect) GetUser() *User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-func (x *Connect) GetActive() bool {
-	if x != nil {
-		return x.Active
-	}
-	return false
 }
 
 type Close struct {
@@ -244,27 +244,28 @@ var File_service_proto protoreflect.FileDescriptor
 
 var file_service_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2a, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12,
-	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
-	0x6d, 0x65, 0x22, 0x51, 0x0a, 0x07, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x0e, 0x0a,
+	0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x45, 0x0a, 0x0a, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52,
+	0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x56, 0x0a,
+	0x0c, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x0a,
 	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x18, 0x0a,
 	0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
 	0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73,
 	0x74, 0x61, 0x6d, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65,
-	0x73, 0x74, 0x61, 0x6d, 0x70, 0x22, 0x42, 0x0a, 0x07, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
-	0x12, 0x1f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65,
-	0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x07, 0x0a, 0x05, 0x43, 0x6c, 0x6f,
-	0x73, 0x65, 0x32, 0x6f, 0x0a, 0x09, 0x42, 0x72, 0x6f, 0x61, 0x64, 0x63, 0x61, 0x73, 0x74, 0x12,
-	0x30, 0x0a, 0x0c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12,
-	0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x1a,
-	0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x30,
-	0x01, 0x12, 0x30, 0x0a, 0x10, 0x42, 0x72, 0x6f, 0x61, 0x64, 0x63, 0x61, 0x73, 0x74, 0x4d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6c,
-	0x6f, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x74, 0x61, 0x6d, 0x70, 0x22, 0x2a, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x22, 0x07, 0x0a, 0x05, 0x43, 0x6c, 0x6f, 0x73, 0x65, 0x32, 0x7b, 0x0a, 0x0b, 0x43, 0x68,
+	0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x35, 0x0a, 0x09, 0x53, 0x74, 0x61,
+	0x72, 0x74, 0x43, 0x68, 0x61, 0x74, 0x12, 0x11, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x30, 0x01,
+	0x12, 0x35, 0x0a, 0x10, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54,
+	0x6f, 0x41, 0x6c, 0x6c, 0x12, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4e, 0x6f, 0x74,
+	0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x43, 0x6c, 0x6f, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -281,17 +282,17 @@ func file_service_proto_rawDescGZIP() []byte {
 
 var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_service_proto_goTypes = []interface{}{
-	(*User)(nil),    // 0: proto.User
-	(*Message)(nil), // 1: proto.Message
-	(*Connect)(nil), // 2: proto.Connect
-	(*Close)(nil),   // 3: proto.Close
+	(*Connection)(nil),   // 0: proto.Connection
+	(*Notification)(nil), // 1: proto.Notification
+	(*User)(nil),         // 2: proto.User
+	(*Close)(nil),        // 3: proto.Close
 }
 var file_service_proto_depIdxs = []int32{
-	0, // 0: proto.Connect.user:type_name -> proto.User
-	2, // 1: proto.Broadcast.CreateStream:input_type -> proto.Connect
-	1, // 2: proto.Broadcast.BroadcastMessage:input_type -> proto.Message
-	1, // 3: proto.Broadcast.CreateStream:output_type -> proto.Message
-	3, // 4: proto.Broadcast.BroadcastMessage:output_type -> proto.Close
+	2, // 0: proto.Connection.user:type_name -> proto.User
+	0, // 1: proto.ChatService.StartChat:input_type -> proto.Connection
+	1, // 2: proto.ChatService.SendMessageToAll:input_type -> proto.Notification
+	1, // 3: proto.ChatService.StartChat:output_type -> proto.Notification
+	3, // 4: proto.ChatService.SendMessageToAll:output_type -> proto.Close
 	3, // [3:5] is the sub-list for method output_type
 	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -306,7 +307,7 @@ func file_service_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_service_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*User); i {
+			switch v := v.(*Connection); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -318,7 +319,7 @@ func file_service_proto_init() {
 			}
 		}
 		file_service_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Message); i {
+			switch v := v.(*Notification); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -330,7 +331,7 @@ func file_service_proto_init() {
 			}
 		}
 		file_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Connect); i {
+			switch v := v.(*User); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -382,28 +383,31 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// BroadcastClient is the client API for Broadcast service.
+// ChatServiceClient is the client API for ChatService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type BroadcastClient interface {
-	CreateStream(ctx context.Context, in *Connect, opts ...grpc.CallOption) (Broadcast_CreateStreamClient, error)
-	BroadcastMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error)
+type ChatServiceClient interface {
+	// Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatServer" that has a method Send() which is used in a server side. Similarly, an interface will be created with a name "ChatService_StartChatClient" that has a method Recv() used by the client
+	// This method uses "ChatService_StartChatClient.Recv()" method to receivs any upcomming message in a client side
+	StartChat(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_StartChatClient, error)
+	// This is not like the asynchronous metod above. It is a normal metod that receivs a response right away. By the way this method uses "ChatService_StartChatServer.Send()" method to send or broadcast an outgoing messages from a serve-side
+	SendMessageToAll(ctx context.Context, in *Notification, opts ...grpc.CallOption) (*Close, error)
 }
 
-type broadcastClient struct {
+type chatServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewBroadcastClient(cc grpc.ClientConnInterface) BroadcastClient {
-	return &broadcastClient{cc}
+func NewChatServiceClient(cc grpc.ClientConnInterface) ChatServiceClient {
+	return &chatServiceClient{cc}
 }
 
-func (c *broadcastClient) CreateStream(ctx context.Context, in *Connect, opts ...grpc.CallOption) (Broadcast_CreateStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Broadcast_serviceDesc.Streams[0], "/proto.Broadcast/CreateStream", opts...)
+func (c *chatServiceClient) StartChat(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_StartChatClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_ChatService_serviceDesc.Streams[0], "/proto.ChatService/StartChat", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &broadcastCreateStreamClient{stream}
+	x := &chatServiceStartChatClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -413,105 +417,108 @@ func (c *broadcastClient) CreateStream(ctx context.Context, in *Connect, opts ..
 	return x, nil
 }
 
-type Broadcast_CreateStreamClient interface {
-	Recv() (*Message, error)
+type ChatService_StartChatClient interface {
+	Recv() (*Notification, error)
 	grpc.ClientStream
 }
 
-type broadcastCreateStreamClient struct {
+type chatServiceStartChatClient struct {
 	grpc.ClientStream
 }
 
-func (x *broadcastCreateStreamClient) Recv() (*Message, error) {
-	m := new(Message)
+func (x *chatServiceStartChatClient) Recv() (*Notification, error) {
+	m := new(Notification)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *broadcastClient) BroadcastMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error) {
+func (c *chatServiceClient) SendMessageToAll(ctx context.Context, in *Notification, opts ...grpc.CallOption) (*Close, error) {
 	out := new(Close)
-	err := c.cc.Invoke(ctx, "/proto.Broadcast/BroadcastMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.ChatService/SendMessageToAll", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// BroadcastServer is the server API for Broadcast service.
-type BroadcastServer interface {
-	CreateStream(*Connect, Broadcast_CreateStreamServer) error
-	BroadcastMessage(context.Context, *Message) (*Close, error)
+// ChatServiceServer is the server API for ChatService service.
+type ChatServiceServer interface {
+	// Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatServer" that has a method Send() which is used in a server side. Similarly, an interface will be created with a name "ChatService_StartChatClient" that has a method Recv() used by the client
+	// This method uses "ChatService_StartChatClient.Recv()" method to receivs any upcomming message in a client side
+	StartChat(*Connection, ChatService_StartChatServer) error
+	// This is not like the asynchronous metod above. It is a normal metod that receivs a response right away. By the way this method uses "ChatService_StartChatServer.Send()" method to send or broadcast an outgoing messages from a serve-side
+	SendMessageToAll(context.Context, *Notification) (*Close, error)
 }
 
-// UnimplementedBroadcastServer can be embedded to have forward compatible implementations.
-type UnimplementedBroadcastServer struct {
+// UnimplementedChatServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedChatServiceServer struct {
 }
 
-func (*UnimplementedBroadcastServer) CreateStream(*Connect, Broadcast_CreateStreamServer) error {
-	return status.Errorf(codes.Unimplemented, "method CreateStream not implemented")
+func (*UnimplementedChatServiceServer) StartChat(*Connection, ChatService_StartChatServer) error {
+	return status.Errorf(codes.Unimplemented, "method StartChat not implemented")
 }
-func (*UnimplementedBroadcastServer) BroadcastMessage(context.Context, *Message) (*Close, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BroadcastMessage not implemented")
-}
-
-func RegisterBroadcastServer(s *grpc.Server, srv BroadcastServer) {
-	s.RegisterService(&_Broadcast_serviceDesc, srv)
+func (*UnimplementedChatServiceServer) SendMessageToAll(context.Context, *Notification) (*Close, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendMessageToAll not implemented")
 }
 
-func _Broadcast_CreateStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Connect)
+func RegisterChatServiceServer(s *grpc.Server, srv ChatServiceServer) {
+	s.RegisterService(&_ChatService_serviceDesc, srv)
+}
+
+func _ChatService_StartChat_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Connection)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(BroadcastServer).CreateStream(m, &broadcastCreateStreamServer{stream})
+	return srv.(ChatServiceServer).StartChat(m, &chatServiceStartChatServer{stream})
 }
 
-type Broadcast_CreateStreamServer interface {
-	Send(*Message) error
+type ChatService_StartChatServer interface {
+	Send(*Notification) error
 	grpc.ServerStream
 }
 
-type broadcastCreateStreamServer struct {
+type chatServiceStartChatServer struct {
 	grpc.ServerStream
 }
 
-func (x *broadcastCreateStreamServer) Send(m *Message) error {
+func (x *chatServiceStartChatServer) Send(m *Notification) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Broadcast_BroadcastMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Message)
+func _ChatService_SendMessageToAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Notification)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BroadcastServer).BroadcastMessage(ctx, in)
+		return srv.(ChatServiceServer).SendMessageToAll(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.Broadcast/BroadcastMessage",
+		FullMethod: "/proto.ChatService/SendMessageToAll",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BroadcastServer).BroadcastMessage(ctx, req.(*Message))
+		return srv.(ChatServiceServer).SendMessageToAll(ctx, req.(*Notification))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Broadcast_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.Broadcast",
-	HandlerType: (*BroadcastServer)(nil),
+var _ChatService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.ChatService",
+	HandlerType: (*ChatServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "BroadcastMessage",
-			Handler:    _Broadcast_BroadcastMessage_Handler,
+			MethodName: "SendMessageToAll",
+			Handler:    _ChatService_SendMessageToAll_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "CreateStream",
-			Handler:       _Broadcast_CreateStream_Handler,
+			StreamName:    "StartChat",
+			Handler:       _ChatService_StartChat_Handler,
 			ServerStreams: true,
 		},
 	},

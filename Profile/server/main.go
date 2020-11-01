@@ -19,12 +19,12 @@ func main() {
 
 	// create an instance of the Service
 	var grpcLog glog.LoggerV2 = glog.NewLoggerV2(os.Stdout, os.Stdout, os.Stdout)
-	var connections []*service.Connection
+	var connections []*service.NewConnection
 
 	srv := service.NewService(grpcLog, connections)
 
 	// Register the service and server
-	proto.RegisterBroadcastServer(s, srv)
+	proto.RegisterChatServiceServer(s, srv)
 
 	// You might want to disable into a production environment though!!
 	reflection.Register(s)

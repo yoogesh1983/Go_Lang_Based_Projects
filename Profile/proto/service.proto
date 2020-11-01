@@ -4,7 +4,6 @@ package proto;
 
 service AccountService {
     rpc SignIn(SignInRequest) returns (SignInResponse);
-    rpc SubscribeSignIn(stream SignInRequest) returns (stream SignInResponse);
 }
 
 message SignInRequest {

@@ -35,15 +35,5 @@ func InitializeTransportLayer() *gin.Engine {
 		}
 	})
 
-	sub.GET("/subscribeLogin", func(ctx *gin.Context) {
-
-		msg, err := client.SubscribeSignIn(ctx)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		} else {
-			fmt.Println("SignInResponse: ", msg.Recv)
-		}
-	})
-
 	return sub
 }

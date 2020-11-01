@@ -212,16 +212,12 @@ var file_service_proto_rawDesc = []byte{
 	0x12, 0x1a, 0x0a, 0x08, 0x6a, 0x77, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x08, 0x6a, 0x77, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x12, 0x0a, 0x04,
 	0x67, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x67, 0x75, 0x69, 0x64,
-	0x32, 0x8b, 0x01, 0x0a, 0x0e, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x12, 0x35, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x12, 0x14, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x69, 0x67, 0x6e,
-	0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x0f, 0x53, 0x75,
-	0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x12, 0x14, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x69, 0x67, 0x6e,
-	0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x30, 0x01, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x32, 0x47, 0x0a, 0x0e, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x12, 0x35, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x12, 0x14, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x15, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49,
+	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -245,11 +241,9 @@ var file_service_proto_goTypes = []interface{}{
 var file_service_proto_depIdxs = []int32{
 	2, // 0: proto.SignInResponse.data:type_name -> proto.Data
 	0, // 1: proto.AccountService.SignIn:input_type -> proto.SignInRequest
-	0, // 2: proto.AccountService.SubscribeSignIn:input_type -> proto.SignInRequest
-	1, // 3: proto.AccountService.SignIn:output_type -> proto.SignInResponse
-	1, // 4: proto.AccountService.SubscribeSignIn:output_type -> proto.SignInResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
+	1, // 2: proto.AccountService.SignIn:output_type -> proto.SignInResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -331,7 +325,6 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AccountServiceClient interface {
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
-	SubscribeSignIn(ctx context.Context, opts ...grpc.CallOption) (AccountService_SubscribeSignInClient, error)
 }
 
 type accountServiceClient struct {
@@ -351,41 +344,9 @@ func (c *accountServiceClient) SignIn(ctx context.Context, in *SignInRequest, op
 	return out, nil
 }
 
-func (c *accountServiceClient) SubscribeSignIn(ctx context.Context, opts ...grpc.CallOption) (AccountService_SubscribeSignInClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_AccountService_serviceDesc.Streams[0], "/proto.AccountService/SubscribeSignIn", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &accountServiceSubscribeSignInClient{stream}
-	return x, nil
-}
-
-type AccountService_SubscribeSignInClient interface {
-	Send(*SignInRequest) error
-	Recv() (*SignInResponse, error)
-	grpc.ClientStream
-}
-
-type accountServiceSubscribeSignInClient struct {
-	grpc.ClientStream
-}
-
-func (x *accountServiceSubscribeSignInClient) Send(m *SignInRequest) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *accountServiceSubscribeSignInClient) Recv() (*SignInResponse, error) {
-	m := new(SignInResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // AccountServiceServer is the server API for AccountService service.
 type AccountServiceServer interface {
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
-	SubscribeSignIn(AccountService_SubscribeSignInServer) error
 }
 
 // UnimplementedAccountServiceServer can be embedded to have forward compatible implementations.
@@ -394,9 +355,6 @@ type UnimplementedAccountServiceServer struct {
 
 func (*UnimplementedAccountServiceServer) SignIn(context.Context, *SignInRequest) (*SignInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
-}
-func (*UnimplementedAccountServiceServer) SubscribeSignIn(AccountService_SubscribeSignInServer) error {
-	return status.Errorf(codes.Unimplemented, "method SubscribeSignIn not implemented")
 }
 
 func RegisterAccountServiceServer(s *grpc.Server, srv AccountServiceServer) {
@@ -421,32 +379,6 @@ func _AccountService_SignIn_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AccountService_SubscribeSignIn_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(AccountServiceServer).SubscribeSignIn(&accountServiceSubscribeSignInServer{stream})
-}
-
-type AccountService_SubscribeSignInServer interface {
-	Send(*SignInResponse) error
-	Recv() (*SignInRequest, error)
-	grpc.ServerStream
-}
-
-type accountServiceSubscribeSignInServer struct {
-	grpc.ServerStream
-}
-
-func (x *accountServiceSubscribeSignInServer) Send(m *SignInResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func (x *accountServiceSubscribeSignInServer) Recv() (*SignInRequest, error) {
-	m := new(SignInRequest)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 var _AccountService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "proto.AccountService",
 	HandlerType: (*AccountServiceServer)(nil),
@@ -456,13 +388,6 @@ var _AccountService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _AccountService_SignIn_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "SubscribeSignIn",
-			Handler:       _AccountService_SubscribeSignIn_Handler,
-			ServerStreams: true,
-			ClientStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "service.proto",
 }

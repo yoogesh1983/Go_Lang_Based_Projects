@@ -14,10 +14,10 @@ func init() {
 
 func main() {
 
-	// ***************** Create a connection ****************************
+	// ***************** Create a Stream connection ****************************
 	client := transport.GetClient()
 	user := transport.GetUser()
-	err := transport.CreateConnection(client, user, wg)
+	err := transport.InitiateStreamConnection(client, user, wg)
 	if err != nil {
 		fmt.Errorf("error while trying to create a connection: %v", err)
 	}

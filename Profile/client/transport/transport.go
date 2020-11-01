@@ -16,7 +16,7 @@ import (
 	"google.golang.org/grpc"
 )
 
-func GetClient() proto.ChatServiceClient {
+func InitializeTransportLayer() proto.ChatServiceClient {
 	conn, err := grpc.Dial("localhost:4040", grpc.WithInsecure())
 	if err != nil {
 		panic(err)
@@ -25,29 +25,26 @@ func GetClient() proto.ChatServiceClient {
 	return client
 }
 
-func GetUser() *proto.User {
+func StartChat(client proto.ChatServiceClient, wg *sync.WaitGroup) (string, error) {
+	var streamerror error
+
 	timestamp := time.Now()
 	name := flag.String("N", "Kristy", "The name of the user")
 	flag.Parse()
 	id := sha256.Sum256([]byte(timestamp.String() + *name))
+	encodedId := hex.EncodeToString(id[:])
 
-	user := proto.User{
-		Id:   hex.EncodeToString(id[:]),
-		Name: *name,
-	}
-	return &user
-}
-
-func StartChat(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
-	var streamerror error
-
-	connect := &proto.Connection{
-		User:   user,
+	connection := &proto.Connection{
+		User: &proto.User{
+			Id:   encodedId,
+			Name: *name,
+		},
 		Active: true,
 	}
-	stream, err := client.StartChat(context.Background(), connect)
+
+	stream, err := client.StartChat(context.Background(), connection)
 	if err != nil {
-		return fmt.Errorf("connection failed: %v", err)
+		return "", fmt.Errorf("connection failed: %v", err)
 	}
 
 	wg.Add(1)
@@ -64,10 +61,12 @@ func StartChat(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGr
 		}
 	}(stream)
 
-	return streamerror
+	fmt.Println("Successfully entered into a chatRoom with ID:", encodedId)
+	fmt.Println("You are now eligible to Send and Receive all the new messages.")
+	return encodedId, streamerror
 }
 
-func SendMessageToAll(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
+func SendMessageToAll(client proto.ChatServiceClient, id string, wg *sync.WaitGroup) error {
 	var broadCastError error
 
 	wg.Add(1)
@@ -77,7 +76,7 @@ func SendMessageToAll(client proto.ChatServiceClient, user *proto.User, wg *sync
 		scanner := bufio.NewScanner(os.Stdin)
 		for scanner.Scan() {
 			msg := &proto.Message{
-				Id:        user.Id,
+				Id:        id,
 				Content:   scanner.Text(),
 				Timestamp: time.Now().String(),
 			}

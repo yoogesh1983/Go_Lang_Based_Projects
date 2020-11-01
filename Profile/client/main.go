@@ -14,16 +14,17 @@ func init() {
 
 func main() {
 
-	// ***************** Create a Stream connection ****************************
-	client := transport.GetClient()
-	user := transport.GetUser()
-	err := transport.StartChat(client, user, wg)
+	// ***************** Create a client ****************************
+	client := transport.InitializeTransportLayer()
+
+	// *********************** Start chat ****************************
+	id, err := transport.StartChat(client, wg)
 	if err != nil {
 		fmt.Errorf("error while trying to create a connection: %v", err)
 	}
 
 	// **************** Broadcast the Message *****************************
-	err = transport.SendMessageToAll(client, user, wg)
+	err = transport.SendMessageToAll(client, id, wg)
 	if err != nil {
 		fmt.Errorf("error while broadcasting message: %v", err)
 	}

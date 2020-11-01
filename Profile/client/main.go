@@ -17,7 +17,7 @@ func main() {
 	// ***************** Create a Stream connection ****************************
 	client := transport.GetClient()
 	user := transport.GetUser()
-	err := transport.InitiateStreamConnection(client, user, wg)
+	err := transport.StartChat(client, user, wg)
 	if err != nil {
 		fmt.Errorf("error while trying to create a connection: %v", err)
 	}

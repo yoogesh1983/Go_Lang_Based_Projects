@@ -29,6 +29,61 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+type Connection struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User   *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Active bool  `protobuf:"varint,2,opt,name=active,proto3" json:"active,omitempty"`
+}
+
+func (x *Connection) Reset() {
+	*x = Connection{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Connection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Connection) ProtoMessage() {}
+
+func (x *Connection) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Connection.ProtoReflect.Descriptor instead.
+func (*Connection) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Connection) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+func (x *Connection) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
 type Message struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -42,7 +97,7 @@ type Message struct {
 func (x *Message) Reset() {
 	*x = Message{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[0]
+		mi := &file_service_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -55,7 +110,7 @@ func (x *Message) String() string {
 func (*Message) ProtoMessage() {}
 
 func (x *Message) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[0]
+	mi := &file_service_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -68,7 +123,7 @@ func (x *Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Message.ProtoReflect.Descriptor instead.
 func (*Message) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{0}
+	return file_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Message) GetId() string {
@@ -104,7 +159,7 @@ type User struct {
 func (x *User) Reset() {
 	*x = User{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[1]
+		mi := &file_service_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -117,7 +172,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[1]
+	mi := &file_service_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -130,7 +185,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{1}
+	return file_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *User) GetId() string {
@@ -145,61 +200,6 @@ func (x *User) GetName() string {
 		return x.Name
 	}
 	return ""
-}
-
-type Connection struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	User   *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	Active bool  `protobuf:"varint,2,opt,name=active,proto3" json:"active,omitempty"`
-}
-
-func (x *Connection) Reset() {
-	*x = Connection{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Connection) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Connection) ProtoMessage() {}
-
-func (x *Connection) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Connection.ProtoReflect.Descriptor instead.
-func (*Connection) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *Connection) GetUser() *User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-func (x *Connection) GetActive() bool {
-	if x != nil {
-		return x.Active
-	}
-	return false
 }
 
 type Close struct {
@@ -244,28 +244,27 @@ var File_service_proto protoreflect.FileDescriptor
 
 var file_service_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x51, 0x0a, 0x07, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69,
-	0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x74,
-	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
-	0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x22, 0x2a, 0x0a, 0x04, 0x55, 0x73, 0x65,
-	0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69,
-	0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x45, 0x0a, 0x0a, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
-	0x69, 0x6f, 0x6e, 0x12, 0x1f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04,
-	0x75, 0x73, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x07, 0x0a, 0x05,
-	0x43, 0x6c, 0x6f, 0x73, 0x65, 0x32, 0x79, 0x0a, 0x0b, 0x43, 0x68, 0x61, 0x74, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x12, 0x38, 0x0a, 0x11, 0x45, 0x6e, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x74,
-	0x6f, 0x43, 0x68, 0x61, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x11, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x0e, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x30, 0x01, 0x12, 0x30,
-	0x0a, 0x10, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x41,
-	0x6c, 0x6c, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61,
-	0x67, 0x65, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6c, 0x6f, 0x73, 0x65,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x45, 0x0a, 0x0a, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52,
+	0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x51, 0x0a,
+	0x07, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74,
+	0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65,
+	0x6e, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
+	0x22, 0x2a, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x07, 0x0a, 0x05,
+	0x43, 0x6c, 0x6f, 0x73, 0x65, 0x32, 0x71, 0x0a, 0x0b, 0x43, 0x68, 0x61, 0x74, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x12, 0x30, 0x0a, 0x09, 0x53, 0x74, 0x61, 0x72, 0x74, 0x43, 0x68, 0x61,
+	0x74, 0x12, 0x11, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x30, 0x01, 0x12, 0x30, 0x0a, 0x10, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x41, 0x6c, 0x6c, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2e, 0x43, 0x6c, 0x6f, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -282,16 +281,16 @@ func file_service_proto_rawDescGZIP() []byte {
 
 var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_service_proto_goTypes = []interface{}{
-	(*Message)(nil),    // 0: proto.Message
-	(*User)(nil),       // 1: proto.User
-	(*Connection)(nil), // 2: proto.Connection
+	(*Connection)(nil), // 0: proto.Connection
+	(*Message)(nil),    // 1: proto.Message
+	(*User)(nil),       // 2: proto.User
 	(*Close)(nil),      // 3: proto.Close
 }
 var file_service_proto_depIdxs = []int32{
-	1, // 0: proto.Connection.user:type_name -> proto.User
-	2, // 1: proto.ChatService.EnterIntoChatRoom:input_type -> proto.Connection
-	0, // 2: proto.ChatService.SendMessageToAll:input_type -> proto.Message
-	0, // 3: proto.ChatService.EnterIntoChatRoom:output_type -> proto.Message
+	2, // 0: proto.Connection.user:type_name -> proto.User
+	0, // 1: proto.ChatService.StartChat:input_type -> proto.Connection
+	1, // 2: proto.ChatService.SendMessageToAll:input_type -> proto.Message
+	1, // 3: proto.ChatService.StartChat:output_type -> proto.Message
 	3, // 4: proto.ChatService.SendMessageToAll:output_type -> proto.Close
 	3, // [3:5] is the sub-list for method output_type
 	1, // [1:3] is the sub-list for method input_type
@@ -307,7 +306,7 @@ func file_service_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_service_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Message); i {
+			switch v := v.(*Connection); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -319,7 +318,7 @@ func file_service_proto_init() {
 			}
 		}
 		file_service_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*User); i {
+			switch v := v.(*Message); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -331,7 +330,7 @@ func file_service_proto_init() {
 			}
 		}
 		file_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Connection); i {
+			switch v := v.(*User); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -387,7 +386,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ChatServiceClient interface {
-	EnterIntoChatRoom(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_EnterIntoChatRoomClient, error)
+	StartChat(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_StartChatClient, error)
 	SendMessageToAll(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error)
 }
 
@@ -399,12 +398,12 @@ func NewChatServiceClient(cc grpc.ClientConnInterface) ChatServiceClient {
 	return &chatServiceClient{cc}
 }
 
-func (c *chatServiceClient) EnterIntoChatRoom(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_EnterIntoChatRoomClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_ChatService_serviceDesc.Streams[0], "/proto.ChatService/EnterIntoChatRoom", opts...)
+func (c *chatServiceClient) StartChat(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_StartChatClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_ChatService_serviceDesc.Streams[0], "/proto.ChatService/StartChat", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &chatServiceEnterIntoChatRoomClient{stream}
+	x := &chatServiceStartChatClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -414,16 +413,16 @@ func (c *chatServiceClient) EnterIntoChatRoom(ctx context.Context, in *Connectio
 	return x, nil
 }
 
-type ChatService_EnterIntoChatRoomClient interface {
+type ChatService_StartChatClient interface {
 	Recv() (*Message, error)
 	grpc.ClientStream
 }
 
-type chatServiceEnterIntoChatRoomClient struct {
+type chatServiceStartChatClient struct {
 	grpc.ClientStream
 }
 
-func (x *chatServiceEnterIntoChatRoomClient) Recv() (*Message, error) {
+func (x *chatServiceStartChatClient) Recv() (*Message, error) {
 	m := new(Message)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -442,7 +441,7 @@ func (c *chatServiceClient) SendMessageToAll(ctx context.Context, in *Message, o
 
 // ChatServiceServer is the server API for ChatService service.
 type ChatServiceServer interface {
-	EnterIntoChatRoom(*Connection, ChatService_EnterIntoChatRoomServer) error
+	StartChat(*Connection, ChatService_StartChatServer) error
 	SendMessageToAll(context.Context, *Message) (*Close, error)
 }
 
@@ -450,8 +449,8 @@ type ChatServiceServer interface {
 type UnimplementedChatServiceServer struct {
 }
 
-func (*UnimplementedChatServiceServer) EnterIntoChatRoom(*Connection, ChatService_EnterIntoChatRoomServer) error {
-	return status.Errorf(codes.Unimplemented, "method EnterIntoChatRoom not implemented")
+func (*UnimplementedChatServiceServer) StartChat(*Connection, ChatService_StartChatServer) error {
+	return status.Errorf(codes.Unimplemented, "method StartChat not implemented")
 }
 func (*UnimplementedChatServiceServer) SendMessageToAll(context.Context, *Message) (*Close, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendMessageToAll not implemented")
@@ -461,24 +460,24 @@ func RegisterChatServiceServer(s *grpc.Server, srv ChatServiceServer) {
 	s.RegisterService(&_ChatService_serviceDesc, srv)
 }
 
-func _ChatService_EnterIntoChatRoom_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _ChatService_StartChat_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Connection)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ChatServiceServer).EnterIntoChatRoom(m, &chatServiceEnterIntoChatRoomServer{stream})
+	return srv.(ChatServiceServer).StartChat(m, &chatServiceStartChatServer{stream})
 }
 
-type ChatService_EnterIntoChatRoomServer interface {
+type ChatService_StartChatServer interface {
 	Send(*Message) error
 	grpc.ServerStream
 }
 
-type chatServiceEnterIntoChatRoomServer struct {
+type chatServiceStartChatServer struct {
 	grpc.ServerStream
 }
 
-func (x *chatServiceEnterIntoChatRoomServer) Send(m *Message) error {
+func (x *chatServiceStartChatServer) Send(m *Message) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -511,8 +510,8 @@ var _ChatService_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "EnterIntoChatRoom",
-			Handler:       _ChatService_EnterIntoChatRoom_Handler,
+			StreamName:    "StartChat",
+			Handler:       _ChatService_StartChat_Handler,
 			ServerStreams: true,
 		},
 	},

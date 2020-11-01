@@ -3,7 +3,7 @@ syntax = "proto3";
 package proto;
 
 service ChatService {
-    rpc EnterIntoChatRoom(Connection) returns (stream Message);
+    rpc StartChat(Connection) returns (stream Message);
     rpc SendMessageToAll(Message) returns (Close);
 }
 

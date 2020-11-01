@@ -38,20 +38,20 @@ func GetUser() *proto.User {
 	return &user
 }
 
-func InitiateStreamConnection(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
+func StartChat(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
 	var streamerror error
 
 	connect := &proto.Connection{
 		User:   user,
 		Active: true,
 	}
-	stream, err := client.EnterIntoChatRoom(context.Background(), connect)
+	stream, err := client.StartChat(context.Background(), connect)
 	if err != nil {
 		return fmt.Errorf("connection failed: %v", err)
 	}
 
 	wg.Add(1)
-	go func(str proto.ChatService_EnterIntoChatRoomClient) {
+	go func(str proto.ChatService_StartChatClient) {
 		defer wg.Done()
 
 		for {

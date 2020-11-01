@@ -14,7 +14,7 @@ type server struct {
 }
 
 type NewConnection struct {
-	stream proto.ChatService_EnterIntoChatRoomServer
+	stream proto.ChatService_StartChatServer
 	id     string
 	active bool
 	error  chan error
@@ -25,7 +25,7 @@ func NewService(l glog.LoggerV2, c []*NewConnection) *server {
 	return s
 }
 
-func (s *server) EnterIntoChatRoom(pconn *proto.Connection, stream proto.ChatService_EnterIntoChatRoomServer) error {
+func (s *server) StartChat(pconn *proto.Connection, stream proto.ChatService_StartChatServer) error {
 	conn := &NewConnection{
 		stream: stream,
 		id:     pconn.User.Id,

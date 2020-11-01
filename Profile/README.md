@@ -13,4 +13,10 @@
 - Now, run below command to generate a proto file: </br>
     > protoc --proto_path=proto --proto_path=third_party --go_out=plugins=grpc:proto service.proto
 
+## How to connect from client side
+
+ - go inside the client folder and give below command. If you don'y proivde <strong>-N {name}</strong>, then it will by default use the name as <strong>kristy</strong> that we defined at transport.go file. it will then generate the id as the hash of the given name:
+
+    > go run main.go -N yoogesh
+
 

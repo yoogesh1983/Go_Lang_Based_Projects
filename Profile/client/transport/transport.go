@@ -27,7 +27,7 @@ func GetClient() proto.BroadcastClient {
 
 func GetUser() *proto.User {
 	timestamp := time.Now()
-	name := flag.String("N", "Anon", "The name of the user")
+	name := flag.String("N", "Kristy", "The name of the user")
 	flag.Parse()
 	id := sha256.Sum256([]byte(timestamp.String() + *name))
 

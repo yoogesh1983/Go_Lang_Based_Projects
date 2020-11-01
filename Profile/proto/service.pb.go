@@ -147,7 +147,7 @@ func (x *User) GetName() string {
 	return ""
 }
 
-type Connect struct {
+type Connection struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -156,8 +156,8 @@ type Connect struct {
 	Active bool  `protobuf:"varint,2,opt,name=active,proto3" json:"active,omitempty"`
 }
 
-func (x *Connect) Reset() {
-	*x = Connect{}
+func (x *Connection) Reset() {
+	*x = Connection{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -165,13 +165,13 @@ func (x *Connect) Reset() {
 	}
 }
 
-func (x *Connect) String() string {
+func (x *Connection) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Connect) ProtoMessage() {}
+func (*Connection) ProtoMessage() {}
 
-func (x *Connect) ProtoReflect() protoreflect.Message {
+func (x *Connection) ProtoReflect() protoreflect.Message {
 	mi := &file_service_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -183,19 +183,19 @@ func (x *Connect) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Connect.ProtoReflect.Descriptor instead.
-func (*Connect) Descriptor() ([]byte, []int) {
+// Deprecated: Use Connection.ProtoReflect.Descriptor instead.
+func (*Connection) Descriptor() ([]byte, []int) {
 	return file_service_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Connect) GetUser() *User {
+func (x *Connection) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-func (x *Connect) GetActive() bool {
+func (x *Connection) GetActive() bool {
 	if x != nil {
 		return x.Active
 	}
@@ -252,19 +252,20 @@ var file_service_proto_rawDesc = []byte{
 	0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x22, 0x2a, 0x0a, 0x04, 0x55, 0x73, 0x65,
 	0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69,
 	0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x42, 0x0a, 0x07, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
-	0x12, 0x1f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65,
-	0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x07, 0x0a, 0x05, 0x43, 0x6c, 0x6f,
-	0x73, 0x65, 0x32, 0x71, 0x0a, 0x0b, 0x43, 0x68, 0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x12, 0x30, 0x0a, 0x0c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61,
-	0x6d, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
-	0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x30, 0x01, 0x12, 0x30, 0x0a, 0x10, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61,
-	0x67, 0x65, 0x54, 0x6f, 0x41, 0x6c, 0x6c, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
-	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
-	0x43, 0x6c, 0x6f, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x45, 0x0a, 0x0a, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x12, 0x1f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04,
+	0x75, 0x73, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x07, 0x0a, 0x05,
+	0x43, 0x6c, 0x6f, 0x73, 0x65, 0x32, 0x79, 0x0a, 0x0b, 0x43, 0x68, 0x61, 0x74, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x12, 0x38, 0x0a, 0x11, 0x45, 0x6e, 0x74, 0x65, 0x72, 0x49, 0x6e, 0x74,
+	0x6f, 0x43, 0x68, 0x61, 0x74, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x11, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x0e, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x30, 0x01, 0x12, 0x30,
+	0x0a, 0x10, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x41,
+	0x6c, 0x6c, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6c, 0x6f, 0x73, 0x65,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -281,16 +282,16 @@ func file_service_proto_rawDescGZIP() []byte {
 
 var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_service_proto_goTypes = []interface{}{
-	(*Message)(nil), // 0: proto.Message
-	(*User)(nil),    // 1: proto.User
-	(*Connect)(nil), // 2: proto.Connect
-	(*Close)(nil),   // 3: proto.Close
+	(*Message)(nil),    // 0: proto.Message
+	(*User)(nil),       // 1: proto.User
+	(*Connection)(nil), // 2: proto.Connection
+	(*Close)(nil),      // 3: proto.Close
 }
 var file_service_proto_depIdxs = []int32{
-	1, // 0: proto.Connect.user:type_name -> proto.User
-	2, // 1: proto.ChatService.CreateStream:input_type -> proto.Connect
+	1, // 0: proto.Connection.user:type_name -> proto.User
+	2, // 1: proto.ChatService.EnterIntoChatRoom:input_type -> proto.Connection
 	0, // 2: proto.ChatService.SendMessageToAll:input_type -> proto.Message
-	0, // 3: proto.ChatService.CreateStream:output_type -> proto.Message
+	0, // 3: proto.ChatService.EnterIntoChatRoom:output_type -> proto.Message
 	3, // 4: proto.ChatService.SendMessageToAll:output_type -> proto.Close
 	3, // [3:5] is the sub-list for method output_type
 	1, // [1:3] is the sub-list for method input_type
@@ -330,7 +331,7 @@ func file_service_proto_init() {
 			}
 		}
 		file_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Connect); i {
+			switch v := v.(*Connection); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -386,7 +387,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ChatServiceClient interface {
-	CreateStream(ctx context.Context, in *Connect, opts ...grpc.CallOption) (ChatService_CreateStreamClient, error)
+	EnterIntoChatRoom(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_EnterIntoChatRoomClient, error)
 	SendMessageToAll(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error)
 }
 
@@ -398,12 +399,12 @@ func NewChatServiceClient(cc grpc.ClientConnInterface) ChatServiceClient {
 	return &chatServiceClient{cc}
 }
 
-func (c *chatServiceClient) CreateStream(ctx context.Context, in *Connect, opts ...grpc.CallOption) (ChatService_CreateStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_ChatService_serviceDesc.Streams[0], "/proto.ChatService/CreateStream", opts...)
+func (c *chatServiceClient) EnterIntoChatRoom(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_EnterIntoChatRoomClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_ChatService_serviceDesc.Streams[0], "/proto.ChatService/EnterIntoChatRoom", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &chatServiceCreateStreamClient{stream}
+	x := &chatServiceEnterIntoChatRoomClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -413,16 +414,16 @@ func (c *chatServiceClient) CreateStream(ctx context.Context, in *Connect, opts 
 	return x, nil
 }
 
-type ChatService_CreateStreamClient interface {
+type ChatService_EnterIntoChatRoomClient interface {
 	Recv() (*Message, error)
 	grpc.ClientStream
 }
 
-type chatServiceCreateStreamClient struct {
+type chatServiceEnterIntoChatRoomClient struct {
 	grpc.ClientStream
 }
 
-func (x *chatServiceCreateStreamClient) Recv() (*Message, error) {
+func (x *chatServiceEnterIntoChatRoomClient) Recv() (*Message, error) {
 	m := new(Message)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -441,7 +442,7 @@ func (c *chatServiceClient) SendMessageToAll(ctx context.Context, in *Message, o
 
 // ChatServiceServer is the server API for ChatService service.
 type ChatServiceServer interface {
-	CreateStream(*Connect, ChatService_CreateStreamServer) error
+	EnterIntoChatRoom(*Connection, ChatService_EnterIntoChatRoomServer) error
 	SendMessageToAll(context.Context, *Message) (*Close, error)
 }
 
@@ -449,8 +450,8 @@ type ChatServiceServer interface {
 type UnimplementedChatServiceServer struct {
 }
 
-func (*UnimplementedChatServiceServer) CreateStream(*Connect, ChatService_CreateStreamServer) error {
-	return status.Errorf(codes.Unimplemented, "method CreateStream not implemented")
+func (*UnimplementedChatServiceServer) EnterIntoChatRoom(*Connection, ChatService_EnterIntoChatRoomServer) error {
+	return status.Errorf(codes.Unimplemented, "method EnterIntoChatRoom not implemented")
 }
 func (*UnimplementedChatServiceServer) SendMessageToAll(context.Context, *Message) (*Close, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendMessageToAll not implemented")
@@ -460,24 +461,24 @@ func RegisterChatServiceServer(s *grpc.Server, srv ChatServiceServer) {
 	s.RegisterService(&_ChatService_serviceDesc, srv)
 }
 
-func _ChatService_CreateStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Connect)
+func _ChatService_EnterIntoChatRoom_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Connection)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ChatServiceServer).CreateStream(m, &chatServiceCreateStreamServer{stream})
+	return srv.(ChatServiceServer).EnterIntoChatRoom(m, &chatServiceEnterIntoChatRoomServer{stream})
 }
 
-type ChatService_CreateStreamServer interface {
+type ChatService_EnterIntoChatRoomServer interface {
 	Send(*Message) error
 	grpc.ServerStream
 }
 
-type chatServiceCreateStreamServer struct {
+type chatServiceEnterIntoChatRoomServer struct {
 	grpc.ServerStream
 }
 
-func (x *chatServiceCreateStreamServer) Send(m *Message) error {
+func (x *chatServiceEnterIntoChatRoomServer) Send(m *Message) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -510,8 +511,8 @@ var _ChatService_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "CreateStream",
-			Handler:       _ChatService_CreateStream_Handler,
+			StreamName:    "EnterIntoChatRoom",
+			Handler:       _ChatService_EnterIntoChatRoom_Handler,
 			ServerStreams: true,
 		},
 	},

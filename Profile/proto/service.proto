@@ -3,9 +3,15 @@ syntax = "proto3";
 package proto;
 
 service ChatService {
-    rpc CreateStream(Connect) returns (stream Message);
+    rpc EnterIntoChatRoom(Connection) returns (stream Message);
     rpc SendMessageToAll(Message) returns (Close);
 }
+
+message Connection {
+    User user = 1;
+    bool active = 2;
+}
+
 
 message Message {
     string id = 1;
@@ -18,10 +24,7 @@ message User {
     string name = 2;
 }
 
-message Connect {
-    User user = 1;
-    bool active = 2;
-}
+
 
 message Close {
     

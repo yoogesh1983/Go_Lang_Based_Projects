@@ -10,23 +10,23 @@ import (
 
 type server struct {
 	grpcLog    glog.LoggerV2
-	threadPool []*Connection
+	threadPool []*NewConnection
 }
 
-type Connection struct {
-	stream proto.ChatService_CreateStreamServer
+type NewConnection struct {
+	stream proto.ChatService_EnterIntoChatRoomServer
 	id     string
 	active bool
 	error  chan error
 }
 
-func NewService(l glog.LoggerV2, c []*Connection) *server {
+func NewService(l glog.LoggerV2, c []*NewConnection) *server {
 	s := &server{l, c}
 	return s
 }
 
-func (s *server) CreateStream(pconn *proto.Connect, stream proto.ChatService_CreateStreamServer) error {
-	conn := &Connection{
+func (s *server) EnterIntoChatRoom(pconn *proto.Connection, stream proto.ChatService_EnterIntoChatRoomServer) error {
+	conn := &NewConnection{
 		stream: stream,
 		id:     pconn.User.Id,
 		active: true,
@@ -42,7 +42,7 @@ func (s *server) SendMessageToAll(ctx context.Context, msg *proto.Message) (*pro
 
 	for _, v := range s.threadPool {
 		wg.Add(1)
-		go func(msg *proto.Message, conn *Connection) {
+		go func(msg *proto.Message, conn *NewConnection) {
 			defer wg.Done()
 
 			if conn.active {

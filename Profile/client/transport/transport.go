@@ -41,17 +41,17 @@ func GetUser() *proto.User {
 func InitiateStreamConnection(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
 	var streamerror error
 
-	connect := &proto.Connect{
+	connect := &proto.Connection{
 		User:   user,
 		Active: true,
 	}
-	stream, err := client.CreateStream(context.Background(), connect)
+	stream, err := client.EnterIntoChatRoom(context.Background(), connect)
 	if err != nil {
 		return fmt.Errorf("connection failed: %v", err)
 	}
 
 	wg.Add(1)
-	go func(str proto.ChatService_CreateStreamClient) {
+	go func(str proto.ChatService_EnterIntoChatRoomClient) {
 		defer wg.Done()
 
 		for {

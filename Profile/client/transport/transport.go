@@ -32,11 +32,11 @@ func StartChat(client proto.ChatServiceClient, wg *sync.WaitGroup) (string, erro
 	name := flag.String("N", "Kristy", "The name of the user")
 	flag.Parse()
 	id := sha256.Sum256([]byte(timestamp.String() + *name))
-	encodedId := hex.EncodeToString(id[:])
+	encodedID := hex.EncodeToString(id[:])
 
 	connection := &proto.Connection{
 		User: &proto.User{
-			Id:   encodedId,
+			Id:   encodedID,
 			Name: *name,
 		},
 		Active: true,
@@ -52,18 +52,23 @@ func StartChat(client proto.ChatServiceClient, wg *sync.WaitGroup) (string, erro
 		defer wg.Done()
 
 		for {
-			msg, err := str.Recv()
+			notification, err := str.Recv()
 			if err != nil {
 				streamerror = fmt.Errorf("Error reading message: %v", err)
 				break
 			}
-			fmt.Printf("%v : %s\n", msg.Id, msg.Content)
+
+			if encodedID == notification.Id {
+				fmt.Printf("You : %s\n", notification.Content)
+			} else {
+				fmt.Printf("%v : %s\n", notification.Id, notification.Content)
+			}
 		}
 	}(stream)
 
-	fmt.Println("Successfully entered into a chatRoom with ID:", encodedId)
+	fmt.Println("Successfully entered into a chatRoom with ID:", encodedID)
 	fmt.Println("You are now eligible to Send and Receive all the new messages.")
-	return encodedId, streamerror
+	return encodedID, streamerror
 }
 
 func SendMessageToAll(client proto.ChatServiceClient, id string, wg *sync.WaitGroup) error {
@@ -75,13 +80,13 @@ func SendMessageToAll(client proto.ChatServiceClient, id string, wg *sync.WaitGr
 
 		scanner := bufio.NewScanner(os.Stdin)
 		for scanner.Scan() {
-			msg := &proto.Message{
+			notification := &proto.Notification{
 				Id:        id,
 				Content:   scanner.Text(),
 				Timestamp: time.Now().String(),
 			}
 
-			_, err := client.SendMessageToAll(context.Background(), msg)
+			_, err := client.SendMessageToAll(context.Background(), notification)
 			if err != nil {
 				broadCastError = fmt.Errorf("connection failed: %v", err)
 				break

@@ -36,17 +36,17 @@ func (s *server) StartChat(pconn *proto.Connection, stream proto.ChatService_Sta
 	return <-conn.error
 }
 
-func (s *server) SendMessageToAll(ctx context.Context, msg *proto.Message) (*proto.Close, error) {
+func (s *server) SendMessageToAll(ctx context.Context, msg *proto.Notification) (*proto.Close, error) {
 	wg := sync.WaitGroup{}
 	ch := make(chan int)
 
 	for _, v := range s.threadPool {
 		wg.Add(1)
-		go func(msg *proto.Message, conn *NewConnection) {
+		go func(notification *proto.Notification, conn *NewConnection) {
 			defer wg.Done()
 
 			if conn.active {
-				err := conn.stream.Send(msg)
+				err := conn.stream.Send(notification)
 				s.grpcLog.Info("Sending message to: ", conn.stream)
 
 				if err != nil {

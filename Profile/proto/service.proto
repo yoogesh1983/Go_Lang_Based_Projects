@@ -3,7 +3,11 @@ syntax = "proto3";
 package proto;
 
 service ChatService {
+
+    // Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatClient" that has Recv() method
     rpc StartChat(Connection) returns (stream Message);
+
+    // This is not like the asynchronous metod above. It is a normal metod that receivs a response right away and hence it does not have Recv() method
     rpc SendMessageToAll(Message) returns (Close);
 }
 

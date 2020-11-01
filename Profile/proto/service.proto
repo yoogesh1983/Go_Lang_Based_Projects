@@ -4,10 +4,11 @@ package proto;
 
 service ChatService {
 
-    // Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatClient" that has Recv() method
+    // Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatServer" that has a method Send() which is used in a server side. Similarly, an interface will be created with a name "ChatService_StartChatClient" that has a method Recv() used by the client
+    // This method uses "ChatService_StartChatClient.Recv()" method to receivs any upcomming message in a client side
     rpc StartChat(Connection) returns (stream Message);
 
-    // This is not like the asynchronous metod above. It is a normal metod that receivs a response right away and hence it does not have Recv() method
+    // This is not like the asynchronous metod above. It is a normal metod that receivs a response right away. By the way this method uses "ChatService_StartChatServer.Send()" method to send or broadcast an outgoing messages from a serve-side
     rpc SendMessageToAll(Message) returns (Close);
 }
 

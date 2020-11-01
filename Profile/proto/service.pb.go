@@ -386,9 +386,10 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ChatServiceClient interface {
-	// Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatClient" that has Recv() method
+	// Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatServer" that has a method Send() which is used in a server side. Similarly, an interface will be created with a name "ChatService_StartChatClient" that has a method Recv() used by the client
+	// This method uses "ChatService_StartChatClient.Recv()" method to receivs any upcomming message in a client side
 	StartChat(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_StartChatClient, error)
-	// This is not like the asynchronous metod above. It is a normal metod that receivs a response right away and hence it does not have Recv() method
+	// This is not like the asynchronous metod above. It is a normal metod that receivs a response right away. By the way this method uses "ChatService_StartChatServer.Send()" method to send or broadcast an outgoing messages from a serve-side
 	SendMessageToAll(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error)
 }
 
@@ -443,9 +444,10 @@ func (c *chatServiceClient) SendMessageToAll(ctx context.Context, in *Message, o
 
 // ChatServiceServer is the server API for ChatService service.
 type ChatServiceServer interface {
-	// Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatClient" that has Recv() method
+	// Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatServer" that has a method Send() which is used in a server side. Similarly, an interface will be created with a name "ChatService_StartChatClient" that has a method Recv() used by the client
+	// This method uses "ChatService_StartChatClient.Recv()" method to receivs any upcomming message in a client side
 	StartChat(*Connection, ChatService_StartChatServer) error
-	// This is not like the asynchronous metod above. It is a normal metod that receivs a response right away and hence it does not have Recv() method
+	// This is not like the asynchronous metod above. It is a normal metod that receivs a response right away. By the way this method uses "ChatService_StartChatServer.Send()" method to send or broadcast an outgoing messages from a serve-side
 	SendMessageToAll(context.Context, *Message) (*Close, error)
 }
 

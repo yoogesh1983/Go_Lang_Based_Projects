@@ -67,7 +67,7 @@ func CreateConnection(client proto.ChatServiceClient, user *proto.User, wg *sync
 	return streamerror
 }
 
-func SendMessage(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
+func SendMessageToAll(client proto.ChatServiceClient, user *proto.User, wg *sync.WaitGroup) error {
 	var broadCastError error
 
 	wg.Add(1)
@@ -82,7 +82,7 @@ func SendMessage(client proto.ChatServiceClient, user *proto.User, wg *sync.Wait
 				Timestamp: time.Now().String(),
 			}
 
-			_, err := client.BroadcastMessage(context.Background(), msg)
+			_, err := client.SendMessageToAll(context.Background(), msg)
 			if err != nil {
 				broadCastError = fmt.Errorf("connection failed: %v", err)
 				break

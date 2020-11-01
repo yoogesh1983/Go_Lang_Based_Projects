@@ -261,8 +261,8 @@ var file_service_proto_rawDesc = []byte{
 	0x65, 0x12, 0x30, 0x0a, 0x0c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61,
 	0x6d, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
 	0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x30, 0x01, 0x12, 0x30, 0x0a, 0x10, 0x42, 0x72, 0x6f, 0x61, 0x64, 0x63, 0x61, 0x73, 0x74,
-	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
+	0x65, 0x30, 0x01, 0x12, 0x30, 0x0a, 0x10, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x54, 0x6f, 0x41, 0x6c, 0x6c, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
 	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
 	0x43, 0x6c, 0x6f, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
@@ -289,9 +289,9 @@ var file_service_proto_goTypes = []interface{}{
 var file_service_proto_depIdxs = []int32{
 	0, // 0: proto.Connect.user:type_name -> proto.User
 	2, // 1: proto.ChatService.CreateStream:input_type -> proto.Connect
-	1, // 2: proto.ChatService.BroadcastMessage:input_type -> proto.Message
+	1, // 2: proto.ChatService.SendMessageToAll:input_type -> proto.Message
 	1, // 3: proto.ChatService.CreateStream:output_type -> proto.Message
-	3, // 4: proto.ChatService.BroadcastMessage:output_type -> proto.Close
+	3, // 4: proto.ChatService.SendMessageToAll:output_type -> proto.Close
 	3, // [3:5] is the sub-list for method output_type
 	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -387,7 +387,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ChatServiceClient interface {
 	CreateStream(ctx context.Context, in *Connect, opts ...grpc.CallOption) (ChatService_CreateStreamClient, error)
-	BroadcastMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error)
+	SendMessageToAll(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error)
 }
 
 type chatServiceClient struct {
@@ -430,9 +430,9 @@ func (x *chatServiceCreateStreamClient) Recv() (*Message, error) {
 	return m, nil
 }
 
-func (c *chatServiceClient) BroadcastMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error) {
+func (c *chatServiceClient) SendMessageToAll(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Close, error) {
 	out := new(Close)
-	err := c.cc.Invoke(ctx, "/proto.ChatService/BroadcastMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.ChatService/SendMessageToAll", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -442,7 +442,7 @@ func (c *chatServiceClient) BroadcastMessage(ctx context.Context, in *Message, o
 // ChatServiceServer is the server API for ChatService service.
 type ChatServiceServer interface {
 	CreateStream(*Connect, ChatService_CreateStreamServer) error
-	BroadcastMessage(context.Context, *Message) (*Close, error)
+	SendMessageToAll(context.Context, *Message) (*Close, error)
 }
 
 // UnimplementedChatServiceServer can be embedded to have forward compatible implementations.
@@ -452,8 +452,8 @@ type UnimplementedChatServiceServer struct {
 func (*UnimplementedChatServiceServer) CreateStream(*Connect, ChatService_CreateStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method CreateStream not implemented")
 }
-func (*UnimplementedChatServiceServer) BroadcastMessage(context.Context, *Message) (*Close, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BroadcastMessage not implemented")
+func (*UnimplementedChatServiceServer) SendMessageToAll(context.Context, *Message) (*Close, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendMessageToAll not implemented")
 }
 
 func RegisterChatServiceServer(s *grpc.Server, srv ChatServiceServer) {
@@ -481,20 +481,20 @@ func (x *chatServiceCreateStreamServer) Send(m *Message) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _ChatService_BroadcastMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ChatService_SendMessageToAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Message)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ChatServiceServer).BroadcastMessage(ctx, in)
+		return srv.(ChatServiceServer).SendMessageToAll(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.ChatService/BroadcastMessage",
+		FullMethod: "/proto.ChatService/SendMessageToAll",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChatServiceServer).BroadcastMessage(ctx, req.(*Message))
+		return srv.(ChatServiceServer).SendMessageToAll(ctx, req.(*Message))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -504,8 +504,8 @@ var _ChatService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*ChatServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "BroadcastMessage",
-			Handler:    _ChatService_BroadcastMessage_Handler,
+			MethodName: "SendMessageToAll",
+			Handler:    _ChatService_SendMessageToAll_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

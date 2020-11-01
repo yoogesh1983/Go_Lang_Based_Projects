@@ -36,7 +36,7 @@ func (s *server) CreateStream(pconn *proto.Connect, stream proto.ChatService_Cre
 	return <-conn.error
 }
 
-func (s *server) BroadcastMessage(ctx context.Context, msg *proto.Message) (*proto.Close, error) {
+func (s *server) SendMessageToAll(ctx context.Context, msg *proto.Message) (*proto.Close, error) {
 	wg := sync.WaitGroup{}
 	ch := make(chan int)
 

@@ -4,7 +4,7 @@ package proto;
 
 service ChatService {
     rpc CreateStream(Connect) returns (stream Message);
-    rpc BroadcastMessage(Message) returns (Close);
+    rpc SendMessageToAll(Message) returns (Close);
 }
 
 message User {

@@ -23,7 +23,7 @@ func main() {
 	}
 
 	// **************** Broadcast the Message *****************************
-	err = transport.SendMessage(client, user, wg)
+	err = transport.SendMessageToAll(client, user, wg)
 	if err != nil {
 		fmt.Errorf("error while broadcasting message: %v", err)
 	}

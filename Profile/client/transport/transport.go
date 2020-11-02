@@ -86,6 +86,11 @@ func SubsribeForUpdates(client proto.AccountServiceClient, wg *sync.WaitGroup) (
 			} else {
 				fmt.Printf("%v : %s\n", notification.Id, notification.Profile)
 			}
+
+			//********* update the database now *************
+			//user.setFirstName(notification.Profile.FirstName)
+			//user.setLastName(notification.Profile.LastName)
+			//jdbc.save(user)
 		}
 	}(stream)
 

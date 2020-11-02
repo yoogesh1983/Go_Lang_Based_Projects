@@ -2,30 +2,51 @@ syntax = "proto3";
 
 package proto;
 
-service ChatService {
+service AccountService {
 
-    // Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatServer" that has a method Send() which is used in a server side. Similarly, an interface will be created with a name "ChatService_StartChatClient" that has a method Recv() used by the client
-    // This method uses "ChatService_StartChatClient.Recv()" method to receivs any upcomming message in a client side
-    rpc StartChat(Connection) returns (stream Notification);
+    //This is for sycnrhonous call where the response get rightaway
+    rpc SignIn(SignInRequest) returns (SignInResponse);
 
-    // This is not like the asynchronous metod above. It is a normal metod that receivs a response right away. By the way this method uses "ChatService_StartChatServer.Send()" method to send or broadcast an outgoing messages from a serve-side
-    rpc SendMessageToAll(Notification) returns (Close);
+    //These two are for stream call where we get a response everytime something is updated
+    rpc SubsribeForUpdates(Connection) returns (stream Notification);
+    rpc UpdateFirstName(Notification) returns (Close);
 }
 
+message SignInRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message SignInResponse {
+    string transactionID = 1;
+    Data data = 2;
+}
+
+message Data {
+    string jwtToken = 1;
+    int64 guid = 2;
+}
+
+
 message Connection {
-    User user = 1;
+    Client client = 1;
     bool active = 2;
 }
 
 message Notification {
-    string id = 1;
-    string content = 2;
     string timestamp= 3;
+    string id = 1;
+    Profile profile = 2;
 }
 
-message User {
+message Client {
     string id = 1;
     string name = 2;
+}
+
+message Profile {
+    string firstName = 1;
+    string lastName = 2; 
 }
 
 message Close {  

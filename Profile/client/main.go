@@ -3,6 +3,7 @@ package main
 import (
 	transport "Profile/client/transport"
 	"fmt"
+	"log"
 	"sync"
 )
 
@@ -17,14 +18,23 @@ func main() {
 	// ***************** Create a client ****************************
 	client := transport.InitializeTransportLayer()
 
-	// *********************** Start chat ****************************
-	id, err := transport.StartChat(client, wg)
+	//***************** Create Restful api **************************
+	go func() {
+		restClient := transport.StartRestAPI(client)
+		fmt.Println("Client Running on port 8080")
+		if err := restClient.Run(":8080"); err != nil {
+			log.Fatalf("Failed to run server: %v", err)
+		}
+	}()
+
+	// *********************** Start Subscription ****************************
+	id, err := transport.SubsribeForUpdates(client, wg)
 	if err != nil {
 		fmt.Errorf("error while trying to create a connection: %v", err)
 	}
 
 	// **************** Broadcast the Message *****************************
-	err = transport.SendMessageToAll(client, id, wg)
+	err = transport.UpdateFirstName(client, id, wg)
 	if err != nil {
 		fmt.Errorf("error while broadcasting message: %v", err)
 	}

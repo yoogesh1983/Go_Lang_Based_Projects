@@ -19,17 +19,32 @@ func NewService(l glog.LoggerV2, c []*NewConnection) *server {
 }
 
 type NewConnection struct {
-	stream proto.ChatService_StartChatServer
+	stream proto.AccountService_SubsribeForUpdatesServer
 	id     string
 	active bool
 	error  chan error
 }
 
 //@Override
-func (s *server) StartChat(pconn *proto.Connection, stream proto.ChatService_StartChatServer) error {
+func (s *server) SignIn(ctx context.Context, request *proto.SignInRequest) (*proto.SignInResponse, error) {
+	s.grpcLog.Info("Handle request for SignIn", "Username", request.GetUsername(), "Password", request.GetPassword())
+
+	r := &proto.SignInResponse{
+		TransactionID: "57461347597412563612002484",
+		Data: &proto.Data{
+			JwtToken: "KXY58T325EWDH5ADF5A2DF8DFAFSDFS5DF5DFDF5DFG5SD5FG2F",
+			Guid:     5,
+		},
+	}
+
+	return r, nil
+}
+
+//@Override
+func (s *server) SubsribeForUpdates(pconn *proto.Connection, stream proto.AccountService_SubsribeForUpdatesServer) error {
 	conn := &NewConnection{
 		stream: stream,
-		id:     pconn.User.Id,
+		id:     pconn.Client.Id,
 		active: true,
 		error:  make(chan error),
 	}
@@ -38,7 +53,7 @@ func (s *server) StartChat(pconn *proto.Connection, stream proto.ChatService_Sta
 }
 
 //@Override
-func (s *server) SendMessageToAll(ctx context.Context, msg *proto.Notification) (*proto.Close, error) {
+func (s *server) UpdateFirstName(ctx context.Context, msg *proto.Notification) (*proto.Close, error) {
 	wg := sync.WaitGroup{}
 	ch := make(chan int)
 
@@ -49,7 +64,7 @@ func (s *server) SendMessageToAll(ctx context.Context, msg *proto.Notification) 
 
 			if conn.active {
 				err := conn.stream.Send(notification)
-				s.grpcLog.Info("Sending message to: ", conn.stream)
+				s.grpcLog.Info("Updating a profile: ", conn.stream)
 
 				if err != nil {
 					s.grpcLog.Errorf("Error with Stream: %v - Error: %v", conn.stream, err)

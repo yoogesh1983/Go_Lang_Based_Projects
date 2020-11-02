@@ -29,19 +29,184 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+type SignInRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *SignInRequest) Reset() {
+	*x = SignInRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SignInRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignInRequest) ProtoMessage() {}
+
+func (x *SignInRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignInRequest.ProtoReflect.Descriptor instead.
+func (*SignInRequest) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *SignInRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *SignInRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type SignInResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TransactionID string `protobuf:"bytes,1,opt,name=transactionID,proto3" json:"transactionID,omitempty"`
+	Data          *Data  `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *SignInResponse) Reset() {
+	*x = SignInResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SignInResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignInResponse) ProtoMessage() {}
+
+func (x *SignInResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignInResponse.ProtoReflect.Descriptor instead.
+func (*SignInResponse) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SignInResponse) GetTransactionID() string {
+	if x != nil {
+		return x.TransactionID
+	}
+	return ""
+}
+
+func (x *SignInResponse) GetData() *Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	JwtToken string `protobuf:"bytes,1,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
+	Guid     int64  `protobuf:"varint,2,opt,name=guid,proto3" json:"guid,omitempty"`
+}
+
+func (x *Data) Reset() {
+	*x = Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Data) ProtoMessage() {}
+
+func (x *Data) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Data.ProtoReflect.Descriptor instead.
+func (*Data) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Data) GetJwtToken() string {
+	if x != nil {
+		return x.JwtToken
+	}
+	return ""
+}
+
+func (x *Data) GetGuid() int64 {
+	if x != nil {
+		return x.Guid
+	}
+	return 0
+}
+
 type Connection struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	User   *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	Active bool  `protobuf:"varint,2,opt,name=active,proto3" json:"active,omitempty"`
+	Client *Client `protobuf:"bytes,1,opt,name=client,proto3" json:"client,omitempty"`
+	Active bool    `protobuf:"varint,2,opt,name=active,proto3" json:"active,omitempty"`
 }
 
 func (x *Connection) Reset() {
 	*x = Connection{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[0]
+		mi := &file_service_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -54,7 +219,7 @@ func (x *Connection) String() string {
 func (*Connection) ProtoMessage() {}
 
 func (x *Connection) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[0]
+	mi := &file_service_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -67,12 +232,12 @@ func (x *Connection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Connection.ProtoReflect.Descriptor instead.
 func (*Connection) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{0}
+	return file_service_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Connection) GetUser() *User {
+func (x *Connection) GetClient() *Client {
 	if x != nil {
-		return x.User
+		return x.Client
 	}
 	return nil
 }
@@ -89,15 +254,15 @@ type Notification struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Content   string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
-	Timestamp string `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Timestamp string   `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Id        string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Profile   *Profile `protobuf:"bytes,2,opt,name=profile,proto3" json:"profile,omitempty"`
 }
 
 func (x *Notification) Reset() {
 	*x = Notification{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[1]
+		mi := &file_service_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -110,7 +275,7 @@ func (x *Notification) String() string {
 func (*Notification) ProtoMessage() {}
 
 func (x *Notification) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[1]
+	mi := &file_service_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,21 +288,7 @@ func (x *Notification) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Notification.ProtoReflect.Descriptor instead.
 func (*Notification) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Notification) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Notification) GetContent() string {
-	if x != nil {
-		return x.Content
-	}
-	return ""
+	return file_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Notification) GetTimestamp() string {
@@ -147,7 +298,21 @@ func (x *Notification) GetTimestamp() string {
 	return ""
 }
 
-type User struct {
+func (x *Notification) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Notification) GetProfile() *Profile {
+	if x != nil {
+		return x.Profile
+	}
+	return nil
+}
+
+type Client struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -156,23 +321,23 @@ type User struct {
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 }
 
-func (x *User) Reset() {
-	*x = User{}
+func (x *Client) Reset() {
+	*x = Client{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[2]
+		mi := &file_service_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *User) String() string {
+func (x *Client) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*User) ProtoMessage() {}
+func (*Client) ProtoMessage() {}
 
-func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[2]
+func (x *Client) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -183,21 +348,76 @@ func (x *User) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use User.ProtoReflect.Descriptor instead.
-func (*User) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use Client.ProtoReflect.Descriptor instead.
+func (*Client) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *User) GetId() string {
+func (x *Client) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *User) GetName() string {
+func (x *Client) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+type Profile struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirstName string `protobuf:"bytes,1,opt,name=firstName,proto3" json:"firstName,omitempty"`
+	LastName  string `protobuf:"bytes,2,opt,name=lastName,proto3" json:"lastName,omitempty"`
+}
+
+func (x *Profile) Reset() {
+	*x = Profile{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Profile) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Profile) ProtoMessage() {}
+
+func (x *Profile) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Profile.ProtoReflect.Descriptor instead.
+func (*Profile) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Profile) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *Profile) GetLastName() string {
+	if x != nil {
+		return x.LastName
 	}
 	return ""
 }
@@ -211,7 +431,7 @@ type Close struct {
 func (x *Close) Reset() {
 	*x = Close{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_proto_msgTypes[3]
+		mi := &file_service_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -224,7 +444,7 @@ func (x *Close) String() string {
 func (*Close) ProtoMessage() {}
 
 func (x *Close) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[3]
+	mi := &file_service_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -237,35 +457,59 @@ func (x *Close) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Close.ProtoReflect.Descriptor instead.
 func (*Close) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{3}
+	return file_service_proto_rawDescGZIP(), []int{7}
 }
 
 var File_service_proto protoreflect.FileDescriptor
 
 var file_service_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x45, 0x0a, 0x0a, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
-	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52,
-	0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x56, 0x0a,
-	0x0c, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x0a,
-	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x18, 0x0a,
-	0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
-	0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73,
-	0x74, 0x61, 0x6d, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65,
-	0x73, 0x74, 0x61, 0x6d, 0x70, 0x22, 0x2a, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0e, 0x0a,
-	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x22, 0x07, 0x0a, 0x05, 0x43, 0x6c, 0x6f, 0x73, 0x65, 0x32, 0x7b, 0x0a, 0x0b, 0x43, 0x68,
-	0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x35, 0x0a, 0x09, 0x53, 0x74, 0x61,
-	0x72, 0x74, 0x43, 0x68, 0x61, 0x74, 0x12, 0x11, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43,
-	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2e, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x30, 0x01,
-	0x12, 0x35, 0x0a, 0x10, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54,
-	0x6f, 0x41, 0x6c, 0x6c, 0x12, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4e, 0x6f, 0x74,
-	0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2e, 0x43, 0x6c, 0x6f, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x47, 0x0a, 0x0d, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
+	0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22,
+	0x57, 0x0a, 0x0e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x24, 0x0a, 0x0d, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x44, 0x12, 0x1f, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x44, 0x61,
+	0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x36, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61,
+	0x12, 0x1a, 0x0a, 0x08, 0x6a, 0x77, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x6a, 0x77, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x12, 0x0a, 0x04,
+	0x67, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x67, 0x75, 0x69, 0x64,
+	0x22, 0x4b, 0x0a, 0x0a, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x25,
+	0x0a, 0x06, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x52, 0x06, 0x63,
+	0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x66, 0x0a,
+	0x0c, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1c, 0x0a,
+	0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x28, 0x0a, 0x07, 0x70,
+	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x07, 0x70, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x22, 0x2c, 0x0a, 0x06, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12,
+	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x22, 0x43, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x1c,
+	0x0a, 0x09, 0x66, 0x69, 0x72, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x09, 0x66, 0x69, 0x72, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08,
+	0x6c, 0x61, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x6c, 0x61, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x07, 0x0a, 0x05, 0x43, 0x6c, 0x6f, 0x73,
+	0x65, 0x32, 0xbd, 0x01, 0x0a, 0x0e, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x12, 0x35, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x12, 0x14,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x69, 0x67,
+	0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a, 0x12, 0x53,
+	0x75, 0x62, 0x73, 0x72, 0x69, 0x62, 0x65, 0x46, 0x6f, 0x72, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x73, 0x12, 0x11, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4e, 0x6f, 0x74,
+	0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x30, 0x01, 0x12, 0x34, 0x0a, 0x0f, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x46, 0x69, 0x72, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x13,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6c, 0x6f, 0x73,
+	0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -280,24 +524,32 @@ func file_service_proto_rawDescGZIP() []byte {
 	return file_service_proto_rawDescData
 }
 
-var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_service_proto_goTypes = []interface{}{
-	(*Connection)(nil),   // 0: proto.Connection
-	(*Notification)(nil), // 1: proto.Notification
-	(*User)(nil),         // 2: proto.User
-	(*Close)(nil),        // 3: proto.Close
+	(*SignInRequest)(nil),  // 0: proto.SignInRequest
+	(*SignInResponse)(nil), // 1: proto.SignInResponse
+	(*Data)(nil),           // 2: proto.Data
+	(*Connection)(nil),     // 3: proto.Connection
+	(*Notification)(nil),   // 4: proto.Notification
+	(*Client)(nil),         // 5: proto.Client
+	(*Profile)(nil),        // 6: proto.Profile
+	(*Close)(nil),          // 7: proto.Close
 }
 var file_service_proto_depIdxs = []int32{
-	2, // 0: proto.Connection.user:type_name -> proto.User
-	0, // 1: proto.ChatService.StartChat:input_type -> proto.Connection
-	1, // 2: proto.ChatService.SendMessageToAll:input_type -> proto.Notification
-	1, // 3: proto.ChatService.StartChat:output_type -> proto.Notification
-	3, // 4: proto.ChatService.SendMessageToAll:output_type -> proto.Close
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 0: proto.SignInResponse.data:type_name -> proto.Data
+	5, // 1: proto.Connection.client:type_name -> proto.Client
+	6, // 2: proto.Notification.profile:type_name -> proto.Profile
+	0, // 3: proto.AccountService.SignIn:input_type -> proto.SignInRequest
+	3, // 4: proto.AccountService.SubsribeForUpdates:input_type -> proto.Connection
+	4, // 5: proto.AccountService.UpdateFirstName:input_type -> proto.Notification
+	1, // 6: proto.AccountService.SignIn:output_type -> proto.SignInResponse
+	4, // 7: proto.AccountService.SubsribeForUpdates:output_type -> proto.Notification
+	7, // 8: proto.AccountService.UpdateFirstName:output_type -> proto.Close
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_service_proto_init() }
@@ -307,7 +559,7 @@ func file_service_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_service_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Connection); i {
+			switch v := v.(*SignInRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -319,7 +571,7 @@ func file_service_proto_init() {
 			}
 		}
 		file_service_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Notification); i {
+			switch v := v.(*SignInResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -331,7 +583,7 @@ func file_service_proto_init() {
 			}
 		}
 		file_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*User); i {
+			switch v := v.(*Data); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -343,6 +595,54 @@ func file_service_proto_init() {
 			}
 		}
 		file_service_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Connection); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Notification); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Client); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Profile); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Close); i {
 			case 0:
 				return &v.state
@@ -361,7 +661,7 @@ func file_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -383,31 +683,40 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// ChatServiceClient is the client API for ChatService service.
+// AccountServiceClient is the client API for AccountService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ChatServiceClient interface {
-	// Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatServer" that has a method Send() which is used in a server side. Similarly, an interface will be created with a name "ChatService_StartChatClient" that has a method Recv() used by the client
-	// This method uses "ChatService_StartChatClient.Recv()" method to receivs any upcomming message in a client side
-	StartChat(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_StartChatClient, error)
-	// This is not like the asynchronous metod above. It is a normal metod that receivs a response right away. By the way this method uses "ChatService_StartChatServer.Send()" method to send or broadcast an outgoing messages from a serve-side
-	SendMessageToAll(ctx context.Context, in *Notification, opts ...grpc.CallOption) (*Close, error)
+type AccountServiceClient interface {
+	//This is for sycnrhonous call where the response get rightaway
+	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
+	//These two are for stream call where we get a response everytime something is updated
+	SubsribeForUpdates(ctx context.Context, in *Connection, opts ...grpc.CallOption) (AccountService_SubsribeForUpdatesClient, error)
+	UpdateFirstName(ctx context.Context, in *Notification, opts ...grpc.CallOption) (*Close, error)
 }
 
-type chatServiceClient struct {
+type accountServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewChatServiceClient(cc grpc.ClientConnInterface) ChatServiceClient {
-	return &chatServiceClient{cc}
+func NewAccountServiceClient(cc grpc.ClientConnInterface) AccountServiceClient {
+	return &accountServiceClient{cc}
 }
 
-func (c *chatServiceClient) StartChat(ctx context.Context, in *Connection, opts ...grpc.CallOption) (ChatService_StartChatClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_ChatService_serviceDesc.Streams[0], "/proto.ChatService/StartChat", opts...)
+func (c *accountServiceClient) SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error) {
+	out := new(SignInResponse)
+	err := c.cc.Invoke(ctx, "/proto.AccountService/SignIn", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &chatServiceStartChatClient{stream}
+	return out, nil
+}
+
+func (c *accountServiceClient) SubsribeForUpdates(ctx context.Context, in *Connection, opts ...grpc.CallOption) (AccountService_SubsribeForUpdatesClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_AccountService_serviceDesc.Streams[0], "/proto.AccountService/SubsribeForUpdates", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &accountServiceSubsribeForUpdatesClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -417,16 +726,16 @@ func (c *chatServiceClient) StartChat(ctx context.Context, in *Connection, opts 
 	return x, nil
 }
 
-type ChatService_StartChatClient interface {
+type AccountService_SubsribeForUpdatesClient interface {
 	Recv() (*Notification, error)
 	grpc.ClientStream
 }
 
-type chatServiceStartChatClient struct {
+type accountServiceSubsribeForUpdatesClient struct {
 	grpc.ClientStream
 }
 
-func (x *chatServiceStartChatClient) Recv() (*Notification, error) {
+func (x *accountServiceSubsribeForUpdatesClient) Recv() (*Notification, error) {
 	m := new(Notification)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -434,91 +743,116 @@ func (x *chatServiceStartChatClient) Recv() (*Notification, error) {
 	return m, nil
 }
 
-func (c *chatServiceClient) SendMessageToAll(ctx context.Context, in *Notification, opts ...grpc.CallOption) (*Close, error) {
+func (c *accountServiceClient) UpdateFirstName(ctx context.Context, in *Notification, opts ...grpc.CallOption) (*Close, error) {
 	out := new(Close)
-	err := c.cc.Invoke(ctx, "/proto.ChatService/SendMessageToAll", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.AccountService/UpdateFirstName", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ChatServiceServer is the server API for ChatService service.
-type ChatServiceServer interface {
-	// Because of the stream word in its response, an interface will be created with a name "ChatService_StartChatServer" that has a method Send() which is used in a server side. Similarly, an interface will be created with a name "ChatService_StartChatClient" that has a method Recv() used by the client
-	// This method uses "ChatService_StartChatClient.Recv()" method to receivs any upcomming message in a client side
-	StartChat(*Connection, ChatService_StartChatServer) error
-	// This is not like the asynchronous metod above. It is a normal metod that receivs a response right away. By the way this method uses "ChatService_StartChatServer.Send()" method to send or broadcast an outgoing messages from a serve-side
-	SendMessageToAll(context.Context, *Notification) (*Close, error)
+// AccountServiceServer is the server API for AccountService service.
+type AccountServiceServer interface {
+	//This is for sycnrhonous call where the response get rightaway
+	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
+	//These two are for stream call where we get a response everytime something is updated
+	SubsribeForUpdates(*Connection, AccountService_SubsribeForUpdatesServer) error
+	UpdateFirstName(context.Context, *Notification) (*Close, error)
 }
 
-// UnimplementedChatServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedChatServiceServer struct {
+// UnimplementedAccountServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedAccountServiceServer struct {
 }
 
-func (*UnimplementedChatServiceServer) StartChat(*Connection, ChatService_StartChatServer) error {
-	return status.Errorf(codes.Unimplemented, "method StartChat not implemented")
+func (*UnimplementedAccountServiceServer) SignIn(context.Context, *SignInRequest) (*SignInResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
 }
-func (*UnimplementedChatServiceServer) SendMessageToAll(context.Context, *Notification) (*Close, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendMessageToAll not implemented")
+func (*UnimplementedAccountServiceServer) SubsribeForUpdates(*Connection, AccountService_SubsribeForUpdatesServer) error {
+	return status.Errorf(codes.Unimplemented, "method SubsribeForUpdates not implemented")
+}
+func (*UnimplementedAccountServiceServer) UpdateFirstName(context.Context, *Notification) (*Close, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFirstName not implemented")
 }
 
-func RegisterChatServiceServer(s *grpc.Server, srv ChatServiceServer) {
-	s.RegisterService(&_ChatService_serviceDesc, srv)
+func RegisterAccountServiceServer(s *grpc.Server, srv AccountServiceServer) {
+	s.RegisterService(&_AccountService_serviceDesc, srv)
 }
 
-func _ChatService_StartChat_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _AccountService_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignInRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).SignIn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.AccountService/SignIn",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).SignIn(ctx, req.(*SignInRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountService_SubsribeForUpdates_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Connection)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ChatServiceServer).StartChat(m, &chatServiceStartChatServer{stream})
+	return srv.(AccountServiceServer).SubsribeForUpdates(m, &accountServiceSubsribeForUpdatesServer{stream})
 }
 
-type ChatService_StartChatServer interface {
+type AccountService_SubsribeForUpdatesServer interface {
 	Send(*Notification) error
 	grpc.ServerStream
 }
 
-type chatServiceStartChatServer struct {
+type accountServiceSubsribeForUpdatesServer struct {
 	grpc.ServerStream
 }
 
-func (x *chatServiceStartChatServer) Send(m *Notification) error {
+func (x *accountServiceSubsribeForUpdatesServer) Send(m *Notification) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _ChatService_SendMessageToAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AccountService_UpdateFirstName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Notification)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ChatServiceServer).SendMessageToAll(ctx, in)
+		return srv.(AccountServiceServer).UpdateFirstName(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.ChatService/SendMessageToAll",
+		FullMethod: "/proto.AccountService/UpdateFirstName",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChatServiceServer).SendMessageToAll(ctx, req.(*Notification))
+		return srv.(AccountServiceServer).UpdateFirstName(ctx, req.(*Notification))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _ChatService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.ChatService",
-	HandlerType: (*ChatServiceServer)(nil),
+var _AccountService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.AccountService",
+	HandlerType: (*AccountServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SendMessageToAll",
-			Handler:    _ChatService_SendMessageToAll_Handler,
+			MethodName: "SignIn",
+			Handler:    _AccountService_SignIn_Handler,
+		},
+		{
+			MethodName: "UpdateFirstName",
+			Handler:    _AccountService_UpdateFirstName_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "StartChat",
-			Handler:       _ChatService_StartChat_Handler,
+			StreamName:    "SubsribeForUpdates",
+			Handler:       _AccountService_SubsribeForUpdates_Handler,
 			ServerStreams: true,
 		},
 	},
